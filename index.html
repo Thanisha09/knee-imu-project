@@ -8,56 +8,87 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: #f0f2f5;
+    background: #f4f6f9;
+    scroll-behavior: smooth;
 }
 
+/* NAVBAR */
+nav {
+    position: sticky;
+    top: 0;
+    background: #1e3c72;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* HERO */
 header {
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     color: white;
-    padding: 80px 20px;
+    padding: 100px 20px;
     text-align: center;
 }
 
 header h1 {
     font-size: 42px;
+    margin-bottom: 10px;
 }
 
+/* CONTENT */
 .container {
     padding: 40px;
 }
 
 .section {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 h2 {
     color: #1e3c72;
 }
 
+/* GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
 }
 
+/* CARD */
 .card {
     background: white;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
 }
 
+.card:hover {
+    transform: translateY(-8px);
+}
+
+/* IMAGE */
 .card img {
     width: 100%;
     border-radius: 10px;
+    margin-top: 10px;
 }
 
+/* HIGHLIGHT */
 .highlight {
     background: #2a5298;
     color: white;
     text-align: center;
 }
 
+/* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
@@ -70,58 +101,67 @@ footer {
 
 <body>
 
+<!-- NAVBAR -->
+<nav>
+    <a href="#about">About</a>
+    <a href="#problem">Problem</a>
+    <a href="#method">Method</a>
+    <a href="#results">Results</a>
+</nav>
+
+<!-- HERO -->
 <header>
     <h1>Wearable Dual-IMU System</h1>
-    <p>Knee Joint Angle Estimation using IMU & ESP32</p>
+    <p>Real-Time Knee Joint Angle Estimation using IMU & ESP32</p>
 </header>
 
 <div class="container">
 
-    <!-- About -->
-    <div class="section">
+    <!-- ABOUT -->
+    <div id="about" class="section">
         <h2>🚀 About Project</h2>
         <div class="card">
-            A wearable system using dual IMU sensors to estimate knee joint angles in real-time for rehabilitation and monitoring.
+            A wearable dual-IMU system for accurate real-time knee angle estimation, designed as a low-cost alternative for clinical monitoring.
         </div>
     </div>
 
-    <!-- System Image -->
+    <!-- SYSTEM IMAGE -->
     <div class="section">
         <h2>🧠 System Setup</h2>
         <div class="card">
             <img src="imu_setup.jpg">
-            <p>IMU sensors placed on thigh and shank for angle estimation.</p>
+            <p>IMU sensors attached to thigh and shank.</p>
         </div>
     </div>
 
-    <!-- Problem -->
-    <div class="section">
+    <!-- PROBLEM -->
+    <div id="problem" class="section">
         <h2>⚠️ Problem Statement</h2>
         <div class="grid">
             <div class="card">📏 Goniometer → Static & user dependent</div>
             <div class="card">📷 Vision → Occlusion issues</div>
-            <div class="card highlight">🎯 Need → Wearable real-time system</div>
+            <div class="card highlight">🎯 Need → Real-time wearable system</div>
         </div>
     </div>
 
-    <!-- Method -->
-    <div class="section">
+    <!-- METHOD -->
+    <div id="method" class="section">
         <h2>⚙️ Methodology</h2>
         <div class="card">
-            Two IMU sensors are attached to the leg. Data is processed using ESP32 and filtered to calculate knee angle accurately.
+            Two IMU sensors are placed on the thigh and shank. Data is processed using ESP32 and filtered using a complementary filter to compute stable knee angles.
         </div>
     </div>
 
-    <!-- Graph -->
-    <div class="section">
-        <h2>📊 Results & Graph</h2>
+    <!-- GRAPH -->
+    <div id="results" class="section">
+        <h2>📊 Results</h2>
         <div class="card">
             <img src="graph.png">
-            <p>Comparison of IMU vs reference showing strong correlation.</p>
+            <p>IMU vs reference comparison showing strong correlation.</p>
         </div>
     </div>
 
-    <!-- Results Summary -->
+    <!-- METRICS -->
     <div class="section">
         <h2>📈 Performance</h2>
         <div class="grid">
@@ -131,19 +171,11 @@ footer {
         </div>
     </div>
 
-    <!-- Contribution -->
-    <div class="section">
-        <h2>👩‍💻 My Contribution</h2>
-        <div class="card">
-            Hardware setup, coding, data collection, analysis, and system validation.
-        </div>
-    </div>
-
 </div>
 
 <footer>
-    Thanisha | Biomedical Engineering
+    Thanisha | Biomedical Engineering Project
 </footer>
-    
+
 </body>
 </html>
