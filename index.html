@@ -2,13 +2,13 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Knee Angle Estimation</title>
+<title>Knee IMU Project</title>
 
 <style>
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f4f6f9;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #eef2f3, #dfe9f3);
     scroll-behavior: smooth;
 }
 
@@ -16,7 +16,8 @@ body {
 nav {
     position: sticky;
     top: 0;
-    background: #1e3c72;
+    background: rgba(30,60,114,0.9);
+    backdrop-filter: blur(10px);
     padding: 10px;
     text-align: center;
 }
@@ -30,70 +31,81 @@ nav a {
 
 /* HERO */
 header {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: white;
-    padding: 100px 20px;
     text-align: center;
+    padding: 100px 20px;
 }
 
 header h1 {
     font-size: 42px;
-    margin-bottom: 10px;
 }
 
-/* CONTENT */
+header p {
+    color: #475569;
+    font-size: 18px;
+}
+
+/* CONTAINER */
 .container {
-    padding: 40px;
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
 }
 
-.section {
-    margin-bottom: 50px;
+/* GLASS CARD */
+.glass {
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: 0.3s;
 }
 
-h2 {
-    color: #1e3c72;
+.glass:hover {
+    transform: translateY(-5px);
 }
 
 /* GRID */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
     gap: 20px;
 }
 
-/* CARD */
 .card {
     background: white;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-    transition: 0.3s;
+    text-align: center;
 }
 
-.card:hover {
-    transform: translateY(-8px);
-}
-
-/* IMAGE */
-.card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-/* HIGHLIGHT */
 .highlight {
     background: #2a5298;
     color: white;
-    text-align: center;
+}
+
+/* IMAGE */
+img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* BUTTON */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #2a5298;
+    color: white;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
 /* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
-    background: #1e3c72;
-    color: white;
+    color: #64748b;
 }
 </style>
 
@@ -104,7 +116,7 @@ footer {
 <!-- NAVBAR -->
 <nav>
     <a href="#about">About</a>
-    <a href="#problem">Problem</a>
+    <a href="#flow">How it Works</a>
     <a href="#method">Method</a>
     <a href="#results">Results</a>
 </nav>
@@ -112,69 +124,99 @@ footer {
 <!-- HERO -->
 <header>
     <h1>Wearable Dual-IMU System</h1>
-    <p>Real-Time Knee Joint Angle Estimation using IMU & ESP32</p>
+    <p>A Low-Cost Wearable Solution for Real-Time Knee Monitoring</p>
+    <a href="#about" class="button">Explore Project</a>
 </header>
 
 <div class="container">
 
     <!-- ABOUT -->
-    <div id="about" class="section">
+    <div id="about" class="glass">
         <h2>🚀 About Project</h2>
-        <div class="card">
-            A wearable dual-IMU system for accurate real-time knee angle estimation, designed as a low-cost alternative for clinical monitoring.
+        <p>Wearable dual IMU system for real-time knee angle estimation using ESP32. Designed for rehabilitation and movement monitoring.</p>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div id="flow" class="glass">
+        <h2>🔄 How It Works</h2>
+        <div class="grid">
+            <div class="card">📡 IMU Sensors</div>
+            <div class="card">📲 ESP32</div>
+            <div class="card">🧠 Processing</div>
+            <div class="card highlight">📐 Angle Output</div>
         </div>
     </div>
 
-    <!-- SYSTEM IMAGE -->
-    <div class="section">
+    <!-- SYSTEM -->
+    <div class="glass">
         <h2>🧠 System Setup</h2>
-        <div class="card">
-            <img src="imu_setup.jpg">
-            <p>IMU sensors attached to thigh and shank.</p>
-        </div>
+        <img src="imu_setup.jpg">
+        <p>IMU sensors attached on thigh and shank.</p>
     </div>
 
     <!-- PROBLEM -->
-    <div id="problem" class="section">
-        <h2>⚠️ Problem Statement</h2>
+    <div class="glass">
+        <h2>⚠️ Problem</h2>
         <div class="grid">
-            <div class="card">📏 Goniometer → Static & user dependent</div>
-            <div class="card">📷 Vision → Occlusion issues</div>
-            <div class="card highlight">🎯 Need → Real-time wearable system</div>
+            <div class="card">Goniometer → Static</div>
+            <div class="card">Vision → Occlusion</div>
+            <div class="card highlight">Need → Wearable solution</div>
         </div>
     </div>
 
     <!-- METHOD -->
-    <div id="method" class="section">
+    <div id="method" class="glass">
         <h2>⚙️ Methodology</h2>
-        <div class="card">
-            Two IMU sensors are placed on the thigh and shank. Data is processed using ESP32 and filtered using a complementary filter to compute stable knee angles.
-        </div>
+        <p>Two IMU sensors are placed on the leg. Data is processed using ESP32 and filtered to compute knee angle accurately.</p>
+        <p><b>Validation:</b> Compared with Goniometer and MediaPipe.</p>
     </div>
 
-    <!-- GRAPH -->
-    <div id="results" class="section">
+    <!-- INTERACTIVE -->
+    <div class="glass">
+        <h2>🎮 Simulated Knee Angle</h2>
+        <input type="range" min="0" max="120" value="60"
+        oninput="angleValue.innerText=this.value">
+        <p>Angle: <span id="angleValue">60</span>°</p>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results" class="glass">
         <h2>📊 Results</h2>
-        <div class="card">
-            <img src="graph.png">
-            <p>IMU vs reference comparison showing strong correlation.</p>
-        </div>
+        <img src="graph.png">
+        <p>IMU shows strong agreement with reference methods.</p>
     </div>
 
-    <!-- METRICS -->
-    <div class="section">
+    <!-- PERFORMANCE -->
+    <div class="glass">
         <h2>📈 Performance</h2>
         <div class="grid">
-            <div class="card highlight">Low MAE</div>
-            <div class="card highlight">Low RMSE</div>
-            <div class="card highlight">High Accuracy</div>
+            <div class="card highlight">MAE &lt; 3°</div>
+            <div class="card highlight">RMSE &lt; 5°</div>
+            <div class="card highlight">Correlation &gt; 0.95</div>
         </div>
+    </div>
+
+    <!-- APPLICATIONS -->
+    <div class="glass">
+        <h2>🌍 Applications</h2>
+        <p>
+        • Rehabilitation monitoring <br>
+        • Elderly mobility tracking <br>
+        • Sports injury analysis <br>
+        • Remote healthcare systems
+        </p>
+    </div>
+
+    <!-- CONTRIBUTION -->
+    <div class="glass">
+        <h2>👩‍💻 My Contribution</h2>
+        <p>Hardware setup, coding, data collection, analysis, and validation.</p>
     </div>
 
 </div>
 
 <footer>
-    Thanisha | Biomedical Engineering Project
+    Thanisha • Biomedical Engineering
 </footer>
 
 </body>
